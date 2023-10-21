@@ -1,18 +1,26 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { somethingAction } from "@/app/@modal/modal/action";
+import { normalAction, revalidateAction } from "@/app/@modal/modal/action";
 
 export default function Page() {
   const router = useRouter();
 
-  const handleSubmit = async () => {
-    const result = await somethingAction();
+  const handleNormalSubmit = async () => {
+    const result = await normalAction();
+    if (result.success) {
+      router.back();
+    }
+  };
+
+  const handleRevalidateSubmit = async () => {
+    const result = await revalidateAction();
     if (result.success) {
       setTimeout(() => {
         router.back();
       }, 250);
     }
   };
+
   return (
     <div className="fixed w-96 p-5 top-20 left-0 right-0 m-auto rounded shadow-2xl bg-gray-50 border-2">
       <p>Modal</p>
@@ -24,9 +32,14 @@ export default function Page() {
         >
           close
         </button>
-        <form action={handleSubmit}>
+        <form action={handleNormalSubmit}>
           <button type="submit" className="bg-sky-600 text-white p-2 rounded">
-            Submit
+            Normal submit
+          </button>
+        </form>
+        <form action={handleRevalidateSubmit}>
+          <button type="submit" className="bg-sky-600 text-white p-2 rounded">
+            Revalidate submit
           </button>
         </form>
       </div>
