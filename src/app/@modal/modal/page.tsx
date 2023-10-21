@@ -8,7 +8,9 @@ export default function Page() {
   const handleSubmit = async () => {
     const result = await somethingAction();
     if (result.success) {
-      router.back();
+      setTimeout(() => {
+        router.back();
+      }, 250);
     }
   };
   return (
