@@ -2,9 +2,18 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { revalidateAction } from "@/app/@modal/modal/action";
 
 export default function Page() {
   const router = useRouter();
+  const handleRevalidateSubmit = async () => {
+    const result = await revalidateAction();
+    if (result.success) {
+      setTimeout(() => {
+        router.back();
+      }, 250);
+    }
+  };
   return (
     <div className="w-1/3 fixed right-0 top-0 bottom-0 h-screen shadow-2xl bg-gray-50 p-10">
       <button
@@ -19,6 +28,11 @@ export default function Page() {
         <Link href="/modal" className="bg-sky-600 text-white p-2 rounded">
           Open modal
         </Link>
+        <form action={handleRevalidateSubmit}>
+          <button type="submit" className="bg-sky-600 text-white p-2 rounded">
+            Revalidate submit
+          </button>
+        </form>
       </div>
     </div>
   );
