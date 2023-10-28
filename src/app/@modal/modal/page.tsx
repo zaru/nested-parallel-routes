@@ -16,18 +16,23 @@ export default function Page() {
     const result = await revalidateAction();
     if (result.success) {
       setTimeout(() => {
-        router.back();
+        close();
       }, 250);
     }
   };
+  const close = () => {
+    // 2個めのParallel Routesはなにやっても二度と開かない…
+    router.back();
+    router.refresh();
+  };
 
   return (
-    <div className="fixed w-96 p-5 top-20 left-0 right-0 m-auto rounded shadow-2xl bg-gray-50 border-2">
+    <div className="z-10 fixed w-96 p-5 top-20 left-0 right-0 m-auto rounded shadow-2xl bg-gray-50 border-2">
       <p>Modal</p>
       <div className="mt-4 flex justify-end gap-4">
         <button
           type="button"
-          onClick={() => router.back()}
+          onClick={() => close()}
           className="bg-gray-100 border p-2 rounded"
         >
           close

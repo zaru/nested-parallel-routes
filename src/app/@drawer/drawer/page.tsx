@@ -10,15 +10,21 @@ export default function Page() {
     const result = await revalidateAction();
     if (result.success) {
       setTimeout(() => {
-        router.back();
+        close();
       }, 250);
     }
   };
+  const close = () => {
+    router.back();
+    router.refresh(); // ここで再読込しないと、ドロワーが開けなくなる…
+  };
   return (
     <div className="w-1/3 fixed right-0 top-0 bottom-0 h-screen shadow-2xl bg-gray-50 p-10">
+      <p>Date.now {Date.now()}</p>
+
       <button
         type="button"
-        onClick={() => router.back()}
+        onClick={() => close()}
         className="bg-gray-100 border p-2 rounded"
       >
         close

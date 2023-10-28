@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 
 export async function revalidateAction() {
   console.log("revalidate action");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   return {
     success: true,
   };
