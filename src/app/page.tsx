@@ -11,6 +11,11 @@ export default function Home() {
           Open Drawer
         </Link>
       </div>
+      <div className="mt-4">
+        <Link href="/modal" className="bg-sky-600 text-white p-2 rounded">
+          Open Modal
+        </Link>
+      </div>
     </div>
   );
 }

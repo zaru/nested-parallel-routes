@@ -15,15 +15,13 @@ export default function Page() {
   const handleRevalidateSubmit = async () => {
     const result = await revalidateAction();
     if (result.success) {
-      setTimeout(() => {
-        close();
-      }, 250);
+      close();
     }
   };
+
   const close = () => {
     // 2個めのParallel Routesはなにやっても二度と開かない…
     router.back();
-    router.refresh();
   };
 
   return (

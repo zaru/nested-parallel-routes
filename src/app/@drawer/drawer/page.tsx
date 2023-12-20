@@ -6,18 +6,18 @@ import { revalidateAction } from "@/app/@modal/modal/action";
 
 export default function Page() {
   const router = useRouter();
+
   const handleRevalidateSubmit = async () => {
     const result = await revalidateAction();
     if (result.success) {
-      setTimeout(() => {
-        close();
-      }, 250);
+      close();
     }
   };
+
   const close = () => {
     router.back();
-    router.refresh(); // ここで再読込しないと、ドロワーが開けなくなる…
   };
+
   return (
     <div className="w-1/3 fixed right-0 top-0 bottom-0 h-screen shadow-2xl bg-gray-50 p-10">
       <p>Date.now {Date.now()}</p>
