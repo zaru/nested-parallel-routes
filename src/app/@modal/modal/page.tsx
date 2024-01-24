@@ -8,7 +8,7 @@ export default function Page() {
   const handleNormalSubmit = async () => {
     const result = await normalAction();
     if (result.success) {
-      router.back();
+      close();
     }
   };
 
@@ -20,7 +20,6 @@ export default function Page() {
   };
 
   const close = () => {
-    // 2個めのParallel Routesはなにやっても二度と開かない…
     router.back();
   };
 
